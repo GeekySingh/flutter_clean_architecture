@@ -19,9 +19,9 @@ class Error<T> extends Result<T> {
 }
 
 abstract class SealedResult<T> {
-  R when<R>({
-    R Function(T) success,
-    R Function(ErrorType, String) error,
+  R? when<R>({
+    R Function(T)? success,
+    R Function(ErrorType, String)? error,
   }) {
     if (this is Success<T>) {
       return success?.call(((this as Success).data));

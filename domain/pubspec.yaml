@@ -5,7 +5,7 @@ author: GeekySingh
 homepage: https://github.com/GeekySingh
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -13,8 +13,8 @@ dependencies:
     sdk: flutter
 
   # inversion of control
-  get_it: ^5.0.6
-  injectable: ^1.0.7
+  get_it: ^6.0.0
+  injectable: ^1.2.2
 
 dev_dependencies:
   flutter_test:

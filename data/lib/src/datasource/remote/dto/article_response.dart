@@ -42,7 +42,7 @@ class Article {
 @JsonSerializable()
 class Media {
   @JsonKey(name: 'media-metadata')
-  final List<MediaMetaData> mediaMetadata;
+  final List<MediaMetaData>? mediaMetadata;
 
   Media(this.mediaMetadata);
 

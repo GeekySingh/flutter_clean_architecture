@@ -8,10 +8,9 @@ part of 'article_response.dart';
 
 ArticleResponse _$ArticleResponseFromJson(Map<String, dynamic> json) {
   return ArticleResponse(
-    (json['results'] as List)
-        ?.map((e) =>
-            e == null ? null : Article.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    (json['results'] as List<dynamic>)
+        .map((e) => Article.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -23,10 +22,9 @@ Map<String, dynamic> _$ArticleResponseToJson(ArticleResponse instance) =>
 Article _$ArticleFromJson(Map<String, dynamic> json) {
   return Article(
     json['id'] as int,
-    (json['media'] as List)
-        ?.map(
-            (e) => e == null ? null : Media.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    (json['media'] as List<dynamic>)
+        .map((e) => Media.fromJson(e as Map<String, dynamic>))
+        .toList(),
     json['published_date'] as String,
     json['title'] as String,
     json['abstract'] as String,
@@ -47,11 +45,9 @@ Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
 
 Media _$MediaFromJson(Map<String, dynamic> json) {
   return Media(
-    (json['media-metadata'] as List)
-        ?.map((e) => e == null
-            ? null
-            : MediaMetaData.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    (json['media-metadata'] as List<dynamic>?)
+        ?.map((e) => MediaMetaData.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 

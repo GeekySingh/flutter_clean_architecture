@@ -9,11 +9,11 @@ extension ArticleExtension on Article {
       title: title,
       description: abstract,
       imageUrl: media.length > 2
-          ? media[2]?.mediaMetadata[0]?.url
+          ? media[2].mediaMetadata![0].url
           : media.length > 1
-              ? media[1]?.mediaMetadata[0]?.url
+              ? media[1].mediaMetadata![0].url
               : media.length > 0
-                  ? media[0]?.mediaMetadata[0]?.url
+                  ? media[0].mediaMetadata![0].url
                   : "",
       articleUrl: url,
   date: publishedDate);
@@ -23,11 +23,11 @@ extension ArticleExtension on Article {
       title: title,
       description: abstract,
       imageUrl: media.length > 2
-          ? media[2]?.mediaMetadata[0]?.url
+          ? media[2].mediaMetadata![0].url
           : media.length > 1
-          ? media[1]?.mediaMetadata[0]?.url
+          ? media[1].mediaMetadata![0].url
           : media.length > 0
-          ? media[0]?.mediaMetadata[0]?.url
+          ? media[0].mediaMetadata![0].url
           : "",
       articleUrl: url,
       date: publishedDate);

@@ -1,28 +1,18 @@
 
-import 'package:data/src/datasource/local/dao/base/base_dao.dart';
 import 'package:data/src/datasource/local/entity/article_entity.dart';
-import 'package:domain/domain.dart';
+import 'package:floor/floor.dart';
 
-class ArticleDao implements BaseDao<ArticleEntity, ArticleModel> {
-  @override 
-  String get createTableQuery => throw UnimplementedError();
+const _tableName = 'ArticleEntity';
 
-  @override
-  List<ArticleEntity> fromList(List<ArticleModel> query) {
-    return query.map((e) => e.toEntity())
-  }
+@dao
+abstract class ArticleDao {
 
-  @override
-  ArticleEntity fromMap(ArticleModel query) {
-    // TODO: implement fromMap
-    throw UnimplementedError();
-  }
+  @Query('select * FROM $_tableName')
+  Future<List<ArticleEntity>> getArticles();
 
-  @override
-  ArticleModel toMap(ArticleEntity entity) {
-    // TODO: implement toMap
-    throw UnimplementedError();
-  }
-  
+  @Insert(onConflict: OnConflictStrategy.replace)
+  Future<void> saveArticles(List<ArticleEntity> articles);
 
+  @Query('select * from $_tableName where id = :id')
+  Future<ArticleEntity?> getArticleById(int id);
 }
