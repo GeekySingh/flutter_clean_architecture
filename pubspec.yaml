@@ -1,5 +1,7 @@
 name: flutter_clean_architecture
 description: A new Flutter application.
+author: GeekySingh
+homepage: https://github.com/GeekySingh
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -24,10 +26,23 @@ dependencies:
   flutter:
     sdk: flutter
 
+# include all modules
+  core:
+    path: core
+  presentation:
+    path: presentation
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
+
+  # state management
+  stacked: ^1.7.6
+  # navigation
+  auto_route: ^0.6.9
+  # inversion of control
+  get_it: ^5.0.6
+  injectable: ^1.0.7
 
 dev_dependencies:
   flutter_test:
