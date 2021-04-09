@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/widgets.dart';
+import 'package:core/src/di/locator.dart';
 import 'package:injectable/injectable.dart';
 
 /// Singleton navigation service used for navigation between the screens.
@@ -8,46 +8,88 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 class NavigationService {
 
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  final _router = locator<StackRouter>();
 
-  Future push(String routeName, [Object arguments]) async {
+  Future push<T>(PageRouteInfo routeInfo) async {
     try {
-      return ExtendedNavigator.root?.push(routeName, arguments: arguments);
+      return _router.push(routeInfo);
     } on Exception catch (e) {
       print('Exception occurred in navigateTo: $e');
     }
   }
 
-  Future popAndPush(String routeName, [Object arguments]) async {
+  Future popAndPush(PageRouteInfo routeInfo) async {
     try {
-      return ExtendedNavigator?.root?.popAndPush(routeName, arguments: arguments);
+      return _router.popAndPush(routeInfo);
     } on Exception catch (e) {
       print('Exception occurred in navigateTo: $e');
     }
   }
 
-  Future pushAndRemoveUntil(String routeName, [Object arguments]) async {
+  Future pushAndRemoveUntil(PageRouteInfo routeInfo) async {
     try {
-      return ExtendedNavigator?.root?.pushAndRemoveUntil(
-          routeName, (route) => route.isFirst, arguments: arguments);
+      return _router.pushAndRemoveUntil(routeInfo,
+      predicate: (route) => route.isFirst);
     } on Exception catch (e) {
       print('Exception occurred in navigateTo: $e');
     }
   }
 
-  void pop([Object arguments]) {
+  Future<bool> pop() {
     try {
-      return ExtendedNavigator?.root?.pop(arguments);
+      return _router.pop();
     } on Exception catch (e) {
       print('Exception occurred in pop: $e');
+      return Future.value(false);
     }
   }
 
   void popToRoot() {
     try {
-      return ExtendedNavigator?.root?.popUntil((route) => route.isFirst);
+      return _router.popUntil((route) => route.isFirst);
     } on Exception catch (e) {
       print('Exception occurred in pop: $e');
     }
   }
+
+  // Future push(String routeName, [Object? arguments]) async {
+  //   try {
+  //     return ExtendedNavigator?.root?.push(routeName, arguments: arguments);
+  //   } on Exception catch (e) {
+  //     print('Exception occurred in navigateTo: $e');
+  //   }
+  // }
+  //
+  // Future popAndPush(String routeName, [Object? arguments]) async {
+  //   try {
+  //     return ExtendedNavigator?.root?.popAndPush(routeName, arguments: arguments);
+  //   } on Exception catch (e) {
+  //     print('Exception occurred in navigateTo: $e');
+  //   }
+  // }
+  //
+  // Future pushAndRemoveUntil(String routeName, [Object? arguments]) async {
+  //   try {
+  //     return ExtendedNavigator?.root?.pushAndRemoveUntil(
+  //         routeName, (route) => route.isFirst, arguments: arguments);
+  //   } on Exception catch (e) {
+  //     print('Exception occurred in navigateTo: $e');
+  //   }
+  // }
+  //
+  // void pop([Object? arguments]) {
+  //   try {
+  //     return ExtendedNavigator?.root?.pop(arguments);
+  //   } on Exception catch (e) {
+  //     print('Exception occurred in pop: $e');
+  //   }
+  // }
+  //
+  // void popToRoot() {
+  //   try {
+  //     return ExtendedNavigator?.root?.popUntil((route) => route.isFirst);
+  //   } on Exception catch (e) {
+  //     print('Exception occurred in pop: $e');
+  //   }
+  // }
 }

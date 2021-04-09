@@ -4,65 +4,64 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-// ignore_for_file: public_member_api_docs
+import 'package:auto_route/auto_route.dart' as _i1;
 
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
+import '../features/articles/details/article_detail_screen.dart' as _i4;
+import '../features/articles/list/article_list_screen.dart' as _i3;
+import '../features/login/login_screen.dart' as _i2;
 
-import '../features/articles/details/article_detail_screen.dart';
-import '../features/articles/list/article_list_screen.dart';
-import '../features/login/login_screen.dart';
+class FeatureRouter extends _i1.RootStackRouter {
+  FeatureRouter();
 
-class Routes {
-  static const String loginScreen = '/';
-  static const String articleListScreen = '/article-list-screen';
-  static const String articleDetailScreen = '/article-detail-screen';
-  static const all = <String>{
-    loginScreen,
-    articleListScreen,
-    articleDetailScreen,
+  @override
+  final Map<String, _i1.PageFactory> pagesMap = {
+    LoginScreenRoute.name: (entry) {
+      return _i1.MaterialPageX(entry: entry, child: _i2.LoginScreen());
+    },
+    ArticleListScreenRoute.name: (entry) {
+      return _i1.MaterialPageX(entry: entry, child: _i3.ArticleListScreen());
+    },
+    ArticleDetailScreenRoute.name: (entry) {
+      var args = entry.routeData.argsAs<ArticleDetailScreenRouteArgs>();
+      return _i1.MaterialPageX(
+          entry: entry, child: _i4.ArticleDetailScreen(id: args.id));
+    }
   };
+
+  @override
+  List<_i1.RouteConfig> get routes => [
+        _i1.RouteConfig(LoginScreenRoute.name, path: '/'),
+        _i1.RouteConfig(ArticleListScreenRoute.name,
+            path: '/article-list-screen'),
+        _i1.RouteConfig(ArticleDetailScreenRoute.name,
+            path: '/article-detail-screen')
+      ];
 }
 
-class FeatureRouter extends RouterBase {
-  @override
-  List<RouteDef> get routes => _routes;
-  final _routes = <RouteDef>[
-    RouteDef(Routes.loginScreen, page: LoginScreen),
-    RouteDef(Routes.articleListScreen, page: ArticleListScreen),
-    RouteDef(Routes.articleDetailScreen, page: ArticleDetailScreen),
-  ];
-  @override
-  Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
-  final _pagesMap = <Type, AutoRouteFactory>{
-    LoginScreen: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => LoginScreen(),
-        settings: data,
-      );
-    },
-    ArticleListScreen: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => ArticleListScreen(),
-        settings: data,
-      );
-    },
-    ArticleDetailScreen: (data) {
-      final args = data.getArgs<ArticleDetailScreenArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => ArticleDetailScreen(args.id),
-        settings: data,
-      );
-    },
-  };
+class LoginScreenRoute extends _i1.PageRouteInfo {
+  const LoginScreenRoute() : super(name, path: '/');
+
+  static const String name = 'LoginScreenRoute';
 }
 
-/// ************************************************************************
-/// Arguments holder classes
-/// *************************************************************************
+class ArticleListScreenRoute extends _i1.PageRouteInfo {
+  const ArticleListScreenRoute() : super(name, path: '/article-list-screen');
 
-/// ArticleDetailScreen arguments holder class
-class ArticleDetailScreenArguments {
+  static const String name = 'ArticleListScreenRoute';
+}
+
+class ArticleDetailScreenRoute
+    extends _i1.PageRouteInfo<ArticleDetailScreenRouteArgs> {
+  ArticleDetailScreenRoute({required int id})
+      : super(name,
+            path: '/article-detail-screen',
+            args: ArticleDetailScreenRouteArgs(id: id));
+
+  static const String name = 'ArticleDetailScreenRoute';
+}
+
+class ArticleDetailScreenRouteArgs {
+  const ArticleDetailScreenRouteArgs({required this.id});
+
   final int id;
-  ArticleDetailScreenArguments({@required this.id});
 }

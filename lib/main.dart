@@ -12,15 +12,19 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+  final _coreRouter = Core.routeBuilder(Presentation.getFeatureRouter());
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
         title: 'Flutter Clean Architecture Sample',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        builder: Core.featureRouteBuilder(Presentation.getFeatureRouter()));
+        routerDelegate: _coreRouter.delegate(),
+        routeInformationParser: _coreRouter.defaultRouteParser());
   }
 }

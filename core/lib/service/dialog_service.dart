@@ -1,20 +1,27 @@
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class DialogService {
-  Future<OkCancelResult> error({String title, String message}) {
+
+  BuildContext _getSafeContext() {
+    final context = ExtendedNavigator.root?.widget.navigatorKey?.currentContext;
+    return context != null ? context : throw ('Have you forgot to setup routes?');
+  }
+
+  Future<OkCancelResult> error({required String title, required String message}) {
     return showOkAlertDialog(
-        context: ExtendedNavigator.root.widget.navigatorKey.currentContext,
+        context: _getSafeContext(),
         title: title,
         message: message);
   }
 
-  Future<OkCancelResult> ask({String title, String message, String positiveButton, String negativeButton}) {
+  Future<OkCancelResult> ask({required String title, required String message, required String positiveButton, required String negativeButton}) {
     return showOkCancelAlertDialog(
-        context: ExtendedNavigator.root.widget.navigatorKey.currentContext,
+        context: _getSafeContext(),
         title: title,
         message: message,
         okLabel: positiveButton,

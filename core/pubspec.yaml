@@ -3,9 +3,10 @@ description: A new Flutter package.
 version: 0.0.1
 author: GeekySingh
 homepage: https://github.com/GeekySingh
+publish_to: none
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -16,15 +17,15 @@ dependencies:
   # state management
   stacked: ^1.7.7
   # navigation
-  auto_route: ^0.6.9
+  auto_route: ^1.0.2
   # logger
-  logger: ^0.9.4
+  logger: ^1.0.0
   # inversion of control
-  get_it: ^5.0.1
-  injectable: ^1.0.5
+  get_it: ^6.0.0
+  injectable: ^1.2.2
   # toast and dialog
   flutter_flexible_toast: ^0.1.4
-  adaptive_dialog: ^0.7.5
+  adaptive_dialog: ^0.10.0+5
 
 dev_dependencies:
   flutter_test:

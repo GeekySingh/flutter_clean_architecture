@@ -9,12 +9,10 @@ class ArticleDetailViewModel extends CoreViewModel {
 
   ArticleDetailViewModel(this._articleByIdUseCase);
 
-  String _errorMsg;
-
+  late String _errorMsg;
   String get errorMsg => _errorMsg;
 
-  ArticleModel _articleModel;
-
+  late ArticleModel _articleModel;
   ArticleModel get articleModel => _articleModel;
 
   void getArticleDetails(int id) async {

@@ -2,8 +2,7 @@
 import 'package:core/core/core_view_model.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../common/router.gr.dart';
+import 'package:presentation/src/common/router.dart';
 
 @injectable
 class ArticleListViewModel extends CoreViewModel {
@@ -14,10 +13,10 @@ class ArticleListViewModel extends CoreViewModel {
     loadArticles();
   }
 
-  List<ArticleModel> _articleList;
+  late List<ArticleModel> _articleList;
   List<ArticleModel> get articleList => _articleList;
 
-  String _errorMsg;
+  late String _errorMsg;
   String get errorMsg => _errorMsg;
 
   void loadArticles() async {
@@ -33,6 +32,6 @@ class ArticleListViewModel extends CoreViewModel {
   }
 
   void onArticleItemClicked(int id) {
-    navigationService.push(Routes.articleDetailScreen, ArticleDetailScreenArguments(id: id));
+    navigationService.push(ArticleDetailScreenRoute(id: id));
   }
 }

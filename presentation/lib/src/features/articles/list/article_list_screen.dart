@@ -15,7 +15,7 @@ class ArticleListScreen extends CoreScreen<ArticleListViewModel> {
       appBar: AppBar(title: Text(AppStrings.articleList)),
       body: _buildBody(context, viewModel),
       floatingActionButton: Visibility(
-        visible: viewModel.articleList?.isEmpty ?? false,
+        visible: viewModel.articleList.isEmpty,
         child: FloatingActionButton(
           onPressed: () => viewModel.loadArticles(),
           child: Icon(Icons.refresh),
@@ -44,7 +44,7 @@ class ArticleListScreen extends CoreScreen<ArticleListViewModel> {
       subtitle: Text(model.date, textDirection: TextDirection.rtl),
       contentPadding: EdgeInsets.all(10),
       title: Text(model.title, style: TextStyle(fontSize: 18)),
-      leading: CircleAvatar(backgroundImage: NetworkImage(model.imageUrl), radius: 40),
+      leading: CircleAvatar(backgroundImage: NetworkImage(model.imageUrl ?? ''), radius: 40),
       onTap: () => viewModel.onArticleItemClicked(model.id),
     );
   }

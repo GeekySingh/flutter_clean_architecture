@@ -9,7 +9,7 @@ abstract class CoreViewModel extends BaseViewModel {
 
   final NavigationService navigationService = locator<NavigationService>();
 
-  Status _status;
+  late Status _status;
   Status get status => _status;
 
   void loading() {

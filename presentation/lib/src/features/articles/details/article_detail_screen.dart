@@ -9,7 +9,7 @@ import 'article_detail_view_model.dart';
 class ArticleDetailScreen extends CoreScreen<ArticleDetailViewModel> {
   final int id;
 
-  ArticleDetailScreen(this.id);
+  ArticleDetailScreen({required this.id});
 
   @override
   Widget builder(
@@ -29,7 +29,7 @@ class ArticleDetailScreen extends CoreScreen<ArticleDetailViewModel> {
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image.network(viewModel.articleModel.imageUrl,
+          Image.network(viewModel.articleModel.imageUrl ?? '',
               height: 300, fit: BoxFit.cover),
           Padding(
               padding: EdgeInsets.all(20),
@@ -48,7 +48,7 @@ class ArticleDetailScreen extends CoreScreen<ArticleDetailViewModel> {
                   alignment: Alignment.centerRight)),
           Padding(
               padding: EdgeInsets.all(20),
-              child: FlatButton(
+              child: TextButton(
                 child: Text(AppStrings.readFullStory,
                     style: TextStyle(fontSize: 16, color: Theme.of(context).accentColor), textAlign: TextAlign.end),
                 onPressed: () => {},
