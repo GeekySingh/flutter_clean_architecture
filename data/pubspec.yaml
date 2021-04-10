@@ -18,7 +18,7 @@ dependencies:
 
   # inversion of control
   get_it: ^6.0.0
-  injectable: ^1.2.2
+  injectable: ^1.1.0
   # network
   dio: ^4.0.0
   retrofit: ^2.0.0-beta1

@@ -3,7 +3,7 @@ library feature;
 import 'package:auto_route/auto_route.dart';
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
-import 'package:presentation/src/common/router.dart';
+import 'package:presentation/src/common/routes/router.dart';
 import 'package:presentation/src/di/locator.dart';
 
 class Presentation {
@@ -19,5 +19,5 @@ class Presentation {
   /// Returns router information for features
   /// This information will be used by core module (in main app)
   /// to setup router
-  static FeatureRouter getFeatureRouter() => FeatureRouter();
+  static RootStackRouter getFeatureRouter() => FeatureRouter();
 }

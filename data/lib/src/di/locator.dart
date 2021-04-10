@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 
 import 'locator.config.dart';
 
-final locator = GetIt.instance;
+final locator = GetIt.instance..allowReassignment = true;
 
 @injectableInit
 void setupLocator() {
@@ -26,16 +26,16 @@ void _init(GetIt locator) {
 
 void _registerNetworkModules(GetIt locator) {
 
-  locator.registerLazySingleton<Dio>(() => Dio());
+  locator.registerSingleton<Dio>(Dio());
 }
 
 void _registerServices(GetIt locator) {
 
-  locator.registerLazySingleton<ArticleService>(() => ArticleService(locator(), baseUrl: Constants.BASE_URL));
+  locator.registerLazySingleton<ArticleService>(() => ArticleService(locator<Dio>(), baseUrl: Constants.BASE_URL));
 }
 
-void _registerDatabase(GetIt locator) {
-  locator.registerLazySingletonAsync<AppDatabase>(() => $FloorAppDatabase.databaseBuilder("name").build());
-
-  locator.registerLazySingleton<ArticleDao>(() => locator<AppDatabase>().articleDao);
+void _registerDatabase(GetIt locator) async {
+  final database = await $FloorAppDatabase.databaseBuilder("article_database.db").build();
+  locator.registerLazySingleton<AppDatabase>(() => database);
+  locator.registerLazySingleton<ArticleDao>(() => locator.get<AppDatabase>().articleDao);
 }

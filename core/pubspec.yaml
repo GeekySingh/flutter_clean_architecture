@@ -15,7 +15,7 @@ dependencies:
 
   connectivity: ^2.0.2
   # state management
-  stacked: ^1.7.7
+  stacked: ^2.0.2
   # navigation
   auto_route: ^1.0.2
   # logger

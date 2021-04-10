@@ -1,15 +1,17 @@
 
 import 'package:core/core/core_view_model.dart';
+import 'package:core/service/toast_service.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
-import 'package:presentation/src/common/router.dart';
+import 'package:presentation/src/common/routes/router.dart';
 
 @injectable
 class ArticleListViewModel extends CoreViewModel {
 
   final GetAllArticleUseCase _allArticleUseCase;
+  final ToastService _toastService;
 
-  ArticleListViewModel(this._allArticleUseCase) {
+  ArticleListViewModel(this._allArticleUseCase, this._toastService) {
     loadArticles();
   }
 
@@ -29,6 +31,9 @@ class ArticleListViewModel extends CoreViewModel {
     );
 
     loaded(result.isSuccessful);
+    if(result.isSuccessful) {
+      _toastService.show("Data fetched!");
+    }
   }
 
   void onArticleItemClicked(int id) {

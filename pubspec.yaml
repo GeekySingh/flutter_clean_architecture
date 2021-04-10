@@ -26,7 +26,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-# include all modules
   core:
     path: core
   presentation:

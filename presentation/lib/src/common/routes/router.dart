@@ -1,8 +1,7 @@
 import 'package:auto_route/annotations.dart';
-
-import '../features/articles/details/article_detail_screen.dart';
-import '../features/articles/list/article_list_screen.dart';
-import '../features/login/login_screen.dart';
+import 'package:presentation/src/features/articles/details/article_detail_screen.dart';
+import 'package:presentation/src/features/articles/list/article_list_screen.dart';
+import 'package:presentation/src/features/login/login_screen.dart';
 
 export 'router.gr.dart';
 

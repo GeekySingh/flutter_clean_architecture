@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:core/src/di/locator.dart';
 import 'package:injectable/injectable.dart';
 
 /// Singleton navigation service used for navigation between the screens.
@@ -8,7 +7,8 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 class NavigationService {
 
-  final _router = locator<StackRouter>();
+  final StackRouter _router;
+  NavigationService(this._router);
 
   Future push<T>(PageRouteInfo routeInfo) async {
     try {

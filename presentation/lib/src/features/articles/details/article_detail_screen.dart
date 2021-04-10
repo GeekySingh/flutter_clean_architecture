@@ -1,8 +1,9 @@
 import 'package:core/core/core_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:presentation/src/common/constants/app_strings.dart';
+import 'package:presentation/src/common/constants/assets.dart';
 
-import '../../../common/app_strings.dart';
 import '../../../di/locator.dart';
 import 'article_detail_view_model.dart';
 
@@ -13,7 +14,7 @@ class ArticleDetailScreen extends CoreScreen<ArticleDetailViewModel> {
 
   @override
   Widget builder(
-      BuildContext context, ArticleDetailViewModel viewModel, Widget child) {
+      BuildContext context, ArticleDetailViewModel viewModel, Widget? child) {
     return Scaffold(
         appBar: AppBar(title: Text(AppStrings.articleDetail)),
         body: _buildBody(context, viewModel));
@@ -29,8 +30,8 @@ class ArticleDetailScreen extends CoreScreen<ArticleDetailViewModel> {
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image.network(viewModel.articleModel.imageUrl ?? '',
-              height: 300, fit: BoxFit.cover),
+          FadeInImage(image: NetworkImage(viewModel.articleModel.imageUrl), placeholder: AssetImage(Assets.placeholder),
+          height: 300, fit: BoxFit.cover),
           Padding(
               padding: EdgeInsets.all(20),
               child: Text(viewModel.articleModel.title,

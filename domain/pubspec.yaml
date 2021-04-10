@@ -14,7 +14,7 @@ dependencies:
 
   # inversion of control
   get_it: ^6.0.0
-  injectable: ^1.2.2
+  injectable: ^1.1.0
 
 dev_dependencies:
   flutter_test:

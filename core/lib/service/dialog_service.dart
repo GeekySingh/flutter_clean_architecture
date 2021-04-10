@@ -7,8 +7,11 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 class DialogService {
 
+  final StackRouter _router;
+  DialogService(this._router);
+
   BuildContext _getSafeContext() {
-    final context = ExtendedNavigator.root?.widget.navigatorKey?.currentContext;
+    final context = _router.navigatorKey.currentContext;
     return context != null ? context : throw ('Have you forgot to setup routes?');
   }
 

@@ -1,14 +1,14 @@
 import 'package:core/core/core_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:presentation/src/common/constants/app_strings.dart';
 
-import '../../common/app_strings.dart';
 import '../../di/locator.dart';
 import 'login_view_model.dart';
 
 class LoginScreen extends CoreScreen<LoginViewModel> {
   @override
-  Widget builder(BuildContext context, LoginViewModel viewModel, Widget child) {
+  Widget builder(BuildContext context, LoginViewModel viewModel, Widget? child) {
     return Scaffold(
         appBar: AppBar(title: Text(AppStrings.login)),
         body: _buildBody(context, viewModel));
